@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        /* --- DESIGN SETTINGS --- */
+        :root {
+            --bg-color: #d0d0ff;       /* Periwinkle Blue from your image */
+            --text-color: #ffffff;     /* White Text */
+            --accent-color: #7b68ee;   /* Dark Purple for hovering */
+            --card-bg: #ffffff;        /* White Cards */
+            --card-text: #2c2c2c;      /* Dark text inside cards */
+            
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', sans-serif;
+        }
+
+        /* --- FADE IN ANIMATION --- */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            font-family: var(--font-body); 
+            line-height: 1.6;
+            
+            /* --- STRONGER SHADOW FOR WORDS --- */
+            /* This makes the white text readable on light blue */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); 
+
+            /* Fade In Trigger */
+            animation: fadeIn 1.5s ease-out; 
+        }
+
+        /* NAV BAR */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 5%; }
+        
+        .logo { 
+            font-family: var(--font-heading); 
+            font-weight: bold; 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            color: var(--text-color); 
+        }
+
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-color); 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            letter-spacing: 1px; 
+            transition: color 0.3s;
+            /* Nav links also get the shadow */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+        .nav-links a:hover { 
+            color: var(--accent-color); 
+            text-shadow: none; /* Remove shadow on hover for effect */
+        }
+
+        /* HERO & HEADERS */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero h1 { 
+            font-family: var(--font-heading); 
+            font-size: 4rem; 
+            margin-bottom: 1rem; 
+            /* Extra strong shadow for the big Title */
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+        }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; color: #fff; }
+        
+        .header { padding: 4rem 5% 2rem; text-align: center; }
+        .header h1 { 
+            font-family: var(--font-heading); 
+            font-size: 3rem; 
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5); 
+        }
+
+        /* BUTTONS */
+        .btn { 
+            padding: 1rem 2rem; 
+            border: 1px solid var(--text-color); 
+            background: transparent; 
+            color: var(--text-color); 
+            text-decoration: none; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            font-size: 0.8rem; 
+            transition: all 0.3s ease; 
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2); /* Shadow for button box */
+        }
+        .btn:hover { background: var(--text-color); color: var(--accent-color); text-shadow: none; }
+
+        /* CARDS */
+        .portfolio-section { padding: 4rem 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding-bottom: 4rem; }
+        
+        .card { 
+            background: var(--card-bg); 
+            color: var(--card-text); 
+            padding: 1rem; 
+            text-align: center; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Nice shadow for cards */
+            transition: transform 0.3s ease;
+            text-shadow: none; /* IMPORTANT: No text shadow inside white cards */
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card-image { width: 100%; height: 250px; background-color: #eee; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; object-fit: cover; }
+        .card h3 { font-family: var(--font-heading); margin-bottom: 0.5rem; }
+        .card img { width: 100%; height: auto; margin-bottom: 1rem; }
+
+        /* CONTACT FORM STYLES */
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 4rem auto; padding: 0 5%; align-items: start; }
+        .about-text h1 { font-family: var(--font-heading); font-size: 4rem; line-height: 1.1; margin-bottom: 2rem; text-shadow: 3px 3px 10px rgba(0,0,0,0.5); }
+        .about-text p { margin-bottom: 1.5rem; font-size: 1.1rem; color: #fff; max-width: 450px; }
+        
+        input, textarea {
+            width: 100%; background: transparent; border: none;
+            border-bottom: 1px solid white; 
+            padding: 10px 0; font-family: var(--font-body); font-size: 1rem;
+            color: white; outline: none;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        input::placeholder, textarea::placeholder { color: #f0f0f0; text-shadow: none; }
+        input:focus, textarea:focus { border-bottom: 1px solid var(--accent-color); }
+        
+        .send-btn {
+            background-color: white; color: var(--bg-color); font-weight: bold;
+            border: none; padding: 1rem 3rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: opacity 0.3s; margin-top: 2rem;
+            text-shadow: none;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+        }
+        .send-btn:hover { opacity: 0.9; }
+
+        footer { text-align: center; padding: 3rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.8rem; color: #fff; }
+        
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .container { grid-template-columns: 1fr; gap: 3rem; }
+            .about-text h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">PORTFOLIO.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="logos.html">LOGOS</a></li>
+            <li><a href="posters.html">POSTERS</a></li>
+            <li><a href="typography.html">TYPOGRAPHY</a></li>
+            <li><a href="about.html" style="color: var(--accent-color);">ABOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="about-text">
+            <h1>Hello, I'm<br>Laras.</h1>
+            
+            <p>I am a undergraduate designer with a passion for bold typography and playful brand identities.</p>
+            <p>From crafting logo systems for food brands to designing editorial layouts, I aim to create work that is both functional and visually delicious.</p>
+            <p>Based in South Jakarta, available for freelance collaborations.</p>
+        </div>
+
+        <div class="contact-form">
+            <h2>Let's Connect</h2>
+            
+            <form action="#" method="post">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <textarea rows="1" placeholder="Your Message" required></textarea>
+                </div>
+
+                <button type="submit" class="send-btn">SEND</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

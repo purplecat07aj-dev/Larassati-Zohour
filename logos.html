@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logos</title>
+    <style>
+        /* --- DESIGN SETTINGS (Same as Home) --- */
+        :root {
+            --bg-color: #d0d0ff;
+            --text-color: #ffffff;
+            --accent-color: #7b68ee;
+            --card-bg: #ffffff;
+            --card-text: #2c2c2c;
+            --font-heading: 'Georgia', serif;
+            --font-body: 'Helvetica Neue', sans-serif;
+        }
+
+        /* --- FADE IN ANIMATION --- */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            font-family: var(--font-body); 
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4); 
+            animation: fadeIn 1.5s ease-out; 
+        }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 2rem 5%; }
+        .logo { font-family: var(--font-heading); font-weight: bold; font-size: 1.5rem; letter-spacing: 2px; text-decoration: none; color: var(--text-color); }
+        .nav-links { list-style: none; display: flex; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-size: 0.9rem; font-weight: bold; letter-spacing: 1px; transition: color 0.3s; text-shadow: 1px 1px 4px rgba(0,0,0,0.3); }
+        .nav-links a:hover { color: var(--accent-color); text-shadow: none; }
+        
+        .header { padding: 4rem 5% 2rem; text-align: center; }
+        .header h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem; text-shadow: 3px 3px 10px rgba(0,0,0,0.5); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 0 5% 4rem; }
+        
+        .card { 
+            background: var(--card-bg); 
+            color: var(--card-text); 
+            padding: 1rem; 
+            text-align: center; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+            text-shadow: none; /* No shadow inside cards */
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); }
+        
+        /* THIS MAKES THE MOUSE LOOK LIKE A HAND POINTER ON IMAGES */
+        .card img { 
+            width: 100%; 
+            height: auto; 
+            margin-bottom: 1rem; 
+            cursor: pointer; 
+            border-radius: 4px;
+        }
+
+        /* --- LIGHTBOX (POPUP) STYLES --- */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stays in place when scrolling */
+            z-index: 1000; /* Sits on top of everything */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85); /* Dark background */
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox-content {
+            max-width: 80%;
+            max-height: 80%;
+            border: 5px solid white;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        /* Close text */
+        .close-txt {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">PORTFOLIO.</a>
+        <ul class="nav-links">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="logos.html" style="color: var(--accent-color); text-shadow: none;">LOGOS</a></li>
+            <li><a href="posters.html">POSTERS</a></li>
+            <li><a href="typography.html">TYPOGRAPHY</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="header"><h1>Logo Collection</h1></div>
+
+    <div class="grid">
+        <div class="card">
+            <img src="logo1.png" alt="Logo 1" onclick="openLightbox(this)">
+            <h3> Burger Beats </h3>
+
+	<h4>Visual hooks designed to find their rhythm instantly.I craft tasty, memorable brand identities that stick in your head like a catchy song.</h4>
+
+        </div>
+        <div class="card">
+            <img src="logo2.png" alt="Logo 2" onclick="openLightbox(this)">
+            <h3>Sun-Squeeze Soda</h3>
+<h4>A bold, citrus-inspired emblem that captures the high-energy pop of our signature orange soda. It’s our seal of pure, playful refreshment.</h4>
+        </div>
+        <div class="card">
+            <img src="logo3.png" alt="Logo 3" onclick="openLightbox(this)">
+            <h3> Pizza Quest  </h3>
+	<h4>An adventurous, retro-styled mark that promises a "Legendary Pizza Adventure" in every bite.</h4>
+        </div>
+
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-txt">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script>
+        function openLightbox(img) {
+            var lightbox = document.getElementById("lightbox");
+            var lightboxImg = document.getElementById("lightbox-img");
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src; // Puts the clicked image into the lightbox
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
